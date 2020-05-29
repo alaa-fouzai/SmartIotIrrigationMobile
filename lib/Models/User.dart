@@ -14,14 +14,10 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> parsedJson){
     print('factory :' + parsedJson.toString());
-    return User(id : parsedJson['_id'], FirstName : parsedJson['FirstName'], LastName : parsedJson['FirstName'], email : parsedJson['email'], Created_date : parsedJson['Created_date'], Location_ids : parsedJson['Location_ids']
+    return User(id : parsedJson['_id'], FirstName : parsedJson['FirstName'], LastName : parsedJson['LastName'], email : parsedJson['email'], Created_date : parsedJson['Created_date'], Location_ids : parsedJson['Location_ids']
     );
   }
-  factory User.fromSMem(Map<String, dynamic> parsedJson){
-    print('factory :' + parsedJson.toString());
-    return User(id : parsedJson['id'], FirstName : parsedJson['FirstName'], LastName : parsedJson['FirstName'], email : parsedJson['email'], Created_date : parsedJson['Created_date'], Location_ids : parsedJson['Location_ids']
-    );
-  }
+
 
   @override
   String toString() {

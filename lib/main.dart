@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hello_world/ui/Shared/network.dart';
 import 'package:http/http.dart';
 import 'dart:developer';
 import 'MyRouter.dart';
@@ -27,6 +28,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   TextEditingController email = TextEditingController();
   SharedPreferences sharedPreferences;
+  network net = new network();
   TextEditingController password = TextEditingController();
   @override
   void initState() {
@@ -48,6 +50,8 @@ class _HomeViewState extends State<HomeView> {
     Global.CurrenUser = new User.fromJson(user1);
 
       Global.token = token;
+    print("refrech data from checkLoginStatus");
+      net.refrechData();
       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => Home()), (Route<dynamic> route) => false);
     }
   }
@@ -174,6 +178,8 @@ class _HomeViewState extends State<HomeView> {
       await sharedPreferences.setString('token', parsed['token']);
       Global.CurrenUser = NewUser;
       Global.token = parsed['token'];
+      print("refrech data from login");
+      await net.refrechData();
       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => Home()), (Route<dynamic> route) => false);
       /*Navigator.pushReplacementNamed(context,
       '/home',
@@ -193,7 +199,11 @@ class _HomeViewState extends State<HomeView> {
             content: new Row(
               children: [
                 Container(margin: EdgeInsets.only(left: 5),child:Text(message )),
-                        ],),
+                CircularProgressIndicator(
+                  backgroundColor: Global.mediumBlue,
+                )
+                        ],
+            ),
               );
     showDialog(barrierDismissible: true,
       context:context,

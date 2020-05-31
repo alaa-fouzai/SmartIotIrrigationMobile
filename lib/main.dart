@@ -68,7 +68,7 @@ class _HomeViewState extends State<HomeView> {
         children: <Widget>[
           Container(
             height: size.height - 200,
-            color: Global.mediumBlue,
+            color: Global.greenColor,
           ),
           AnimatedPositioned(
             duration: Duration(milliseconds: 500),
@@ -138,7 +138,7 @@ class _HomeViewState extends State<HomeView> {
                     print('here')
                   },
                 ) : CircularProgressIndicator(
-                backgroundColor: Global.mediumBlue,
+                backgroundColor: Global.darkGreenColor,
               )
               ],
             ),

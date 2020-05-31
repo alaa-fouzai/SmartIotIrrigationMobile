@@ -18,7 +18,7 @@ class ButtonWidget extends StatelessWidget {
     return RawMaterialButton(
       child: Ink(
         decoration: BoxDecoration(
-          color: hasBorder ? Global.white : Global.mediumBlue,
+          color: hasBorder ? Global.white : Global.greenColor,
           borderRadius: BorderRadius.circular(10),
           border: hasBorder
               ? Border.all(

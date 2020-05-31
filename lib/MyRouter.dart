@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/Pages/locationScreen.dart';
 import 'package:hello_world/main.dart';
 import 'package:hello_world/ui/Shared/globals.dart';
 import 'Pages/Home.dart';
@@ -20,6 +21,11 @@ class MyRouter {
         // If args is not of the correct type, return an error page.
         // You can also throw an exception while in development.
         return _errorRoute();
+      case '/location':
+      // Validation of correct data type
+        return MaterialPageRoute(
+            builder : (_) => locationScreen(location: args,),
+        );
       default:
       // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();

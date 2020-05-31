@@ -30,8 +30,6 @@ class network {
 
   }
   Future<bool> refrechData() async {
-  print("refrech data");
-  print('getsidebardata /***************************************************');
   if (Global.UserLocations.length == 0)
     {
   String data =
@@ -67,6 +65,36 @@ class network {
       });
     }
     return true;
+
+  }
+  Future<List<Sensor>> sensorsData(locationId) async {
+   //print("sensorsData");
+    print('sensorsData /***************************************************');
+      String data =
+          'token='+  Global.token + '&location_id='+locationId
+      ;
+      Response response = await http.get(Global.ServerIp+'/api/dashboard/SensorsData?'+data,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          }
+      );
+      //print(response.body);
+      final Map parsed = json.decode(response.body);
+      //print(parsed['response']);
+      List<dynamic> list = parsed['response'];
+      //print('list'+list.toString());
+      List<Sensor> list1 = new List<Sensor>();
+      list.forEach((element) async {
+            print("element :"+element.toString());
+            List<double> coo = new List<double>();
+            coo.add(element['SensorCoordinates'][0]);
+            coo.add(element['SensorCoordinates'][1]);
+            //{SensorCoordinates: [10.25612619972702, 36.76423817546649], Created_date: 2020-05-14T11:46:23.618Z, data: [{humidite: 30, temperature: 30, batterie: 62, humiditéSol: 25, time: 1589457171501}, ], _id: 5ebd30c8b43a4406c0c96d91, SensorIdentifier: 124, SensorType: temperature, __v: 7, Description: description 124, name: Temperature}
+            Sensor s = new Sensor(id:element['_id'], Name: element['name'], SensorType :element['SensorType'], Description :element['Description'], SensorCoordinates : coo, createdate : DateTime.parse(element['Created_date']), data : element['data']);
+            list1.add(s);
+            });
+
+    return list1;
 
   }
 }

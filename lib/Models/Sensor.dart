@@ -7,8 +7,8 @@ List SensorCoordinates;
 DateTime createdate;
 List data;
 
-  Sensor(this.id, this.Name, this.SensorType, this.Description,
-      this.SensorCoordinates, this.createdate, this.data);
+  Sensor({this.id, this.Name, this.SensorType, this.Description,
+      this.SensorCoordinates, this.createdate, this.data});
 
   @override
   String toString() {

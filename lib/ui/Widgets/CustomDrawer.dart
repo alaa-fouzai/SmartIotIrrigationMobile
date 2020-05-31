@@ -146,6 +146,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
               onTap: () {
                 pr(element);
                 print("Tapped " + element.SiteName);
+                Navigator.of(context).pushNamed('/location',arguments: element);
+                setState(() {
+                  widget.closeDrawer();
+                });
               },
               leading: Icon(Icons.location_on),
               title: Text(element.SiteName.toString()),
